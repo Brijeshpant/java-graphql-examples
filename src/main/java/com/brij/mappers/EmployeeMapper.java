@@ -1,6 +1,8 @@
 package com.brij.mappers;
 
+import com.brij.domains.Education;
 import com.brij.domains.Employee;
+import com.brij.entities.EducationEntity;
 import com.brij.entities.EmployeeEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,16 +14,10 @@ import org.mapstruct.factory.Mappers;
 public abstract class EmployeeMapper {
     public static EmployeeMapper INSTANCE = Mappers.getMapper(EmployeeMapper.class);
 
-    @Mappings({
-            @Mapping(source = "FName", target = "personalDetails.FName"),
-            @Mapping(source = "LName", target = "personalDetails.LName"),
-            @Mapping(source = "dob", target = "personalDetails.dob"),
-            @Mapping(source = "father", target = "personalDetails.father"),
-            @Mapping(source = "email", target = "personalDetails.email"),
-            @Mapping(source = "addressEntity", target = "address"),
-            @Mapping(source = "departmentEntity", target = "department")
-    })
+    @Mapping(target = "department", source = "departmentEntity")
     public abstract Employee employeeBuilder(EmployeeEntity employeeEntity);
+
+    public abstract Education educationBuilder(EducationEntity educationEntity);
 
 
 }

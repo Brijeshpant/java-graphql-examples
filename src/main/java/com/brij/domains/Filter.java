@@ -1,22 +1,9 @@
 package com.brij.domains;
 
+import lombok.Data;
+
+@Data
 public class Filter {
     private String field;
     private String value;
-
-    public Object getField() {
-        return field;
-    }
-
-    public void setField(String field) {
-        this.field = field;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
 }

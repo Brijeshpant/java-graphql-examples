@@ -1,9 +1,11 @@
 package com.brij.services.impl;
 
+import com.brij.domains.Education;
 import com.brij.domains.Employee;
-import com.brij.entities.DepartmentEntity;
+import com.brij.entities.EducationEntity;
 import com.brij.entities.EmployeeEntity;
 import com.brij.mappers.EmployeeMapper;
+import com.brij.repositories.EducationRepo;
 import com.brij.repositories.EmployeeRepo;
 import com.brij.services.EmployeeService;
 import org.slf4j.Logger;
@@ -21,6 +23,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     EmployeeRepo employeeRepo;
+    @Autowired
+    EducationRepo educationRepo;
 
     @Override
     public List<Employee> getEmployees() {
@@ -30,11 +34,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee getEmployee(int id, int department) {
-        DepartmentEntity departmentEntity = new DepartmentEntity();
-        departmentEntity.setId(department);
-        Optional<EmployeeEntity> employee = department > 0 ? employeeRepo.findByIdAndDepartmentEntity(id, departmentEntity) : employeeRepo.findById(id);
-        LOGGER.info("Employee {}", employee);
-        return employee.isPresent() ? EmployeeMapper.INSTANCE.employeeBuilder(employee.get()) : null;
+    public Employee getEmployee(int id) {
+        Optional<EmployeeEntity> optionalEmployeeEntity = employeeRepo.findById(id);
+
+        LOGGER.info("Employee {}", optionalEmployeeEntity);
+        return optionalEmployeeEntity.map(employeeEntity -> EmployeeMapper.INSTANCE.employeeBuilder(employeeEntity)).orElse(null);
+    }
+
+    @Override
+    public List<Education> getEducations() {
+        List<EducationEntity> all = educationRepo.findAll();
+        return all.stream().map(educationEntity -> EmployeeMapper.INSTANCE.educationBuilder(educationEntity)).collect(Collectors.toList());
     }
 }

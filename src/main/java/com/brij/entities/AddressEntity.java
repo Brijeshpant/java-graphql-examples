@@ -15,9 +15,5 @@ public class AddressEntity {
     @Id
     int id;
     String addressLine1;
-    String addressLine2;
     String city;
-    String pinCOde;
-    String state;
-    String country;
 }

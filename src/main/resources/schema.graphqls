@@ -1,0 +1,28 @@
+type Query {
+    employees: [Employee]
+    employee(id :Int!): Employee
+    educations : [Education]
+
+}
+type Employee {
+    id: Int
+    name: String
+    email: String
+    department: Department
+
+}
+type Department {
+    id: Int
+    name: String
+    manager: String
+}
+
+type Education {
+    id: Int
+    degree: String
+    marks: Float
+    collage: String
+}
+
+
+

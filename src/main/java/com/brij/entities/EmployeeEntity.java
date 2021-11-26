@@ -14,25 +14,13 @@ public class EmployeeEntity {
     @Id
     int id;
     @Column
-    String fName;
-    @Column
-    String lName;
-    @Column
-    String dob;
-    @Column
-    String mobile;
-    @Column
-    String father;
-    @Column
+    String name;
     String email;
-    @Column
-    int age;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "department_id", referencedColumnName = "id")
     private DepartmentEntity departmentEntity;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private AddressEntity addressEntity;
 

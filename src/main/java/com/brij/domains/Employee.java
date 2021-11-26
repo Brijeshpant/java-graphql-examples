@@ -1,23 +1,12 @@
 package com.brij.domains;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import javax.persistence.Id;
-import java.util.List;
-
-@Setter
-@Getter
-@NoArgsConstructor
-@ToString
+@Data
 public class Employee {
-    @Id
     int id;
-    PersonalDetails personalDetails;
-    Address address;
-    List<Education> educations;
+    String name;
+    String email;
     Department department;
 
 }

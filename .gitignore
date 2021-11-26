@@ -3,3 +3,4 @@
 build
 out
 springboot-graphql.iml
+*/**/.DS_Store

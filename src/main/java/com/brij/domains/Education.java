@@ -1,16 +1,11 @@
 package com.brij.domains;
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@Setter
-@Getter
-@NoArgsConstructor
-@ToString
+@Data
 public class Education {
+    int id;
     String degree;
     String collage;
     double marks;
